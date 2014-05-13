@@ -21,6 +21,15 @@
     return self;
 }
 
+-(instancetype)initWithSampleUpdateBlock:(SampleObjectBlock)completion{
+    
+    if (self = [super init]) {
+        sampleObjectBlock = completion;
+    }
+    
+    return self;
+}
+
 #pragma mark - Operations
 
 -(void)main{
@@ -29,10 +38,11 @@
 
 -(void)doLongOperation{
     //Define the total number of iterations
-    long long totalIterations = 1000000000;
+    long long totalIterations = 100000000;
     
     for (long long ii = 0; ii < totalIterations; ii++) {
-        if (ii %100000000 == 0) {
+        //Every 10%, update UI
+        if (ii %10000000 == 0) {
             //Get the progress of our long running task
             double progress = (double)ii/(double)totalIterations;
             
@@ -45,12 +55,22 @@
                     doubleResponseBlock(progress);
                 }
                 
+                //This one is just an example of calling back with an object instead of a primitive. Works the same way!
+                if (sampleObjectBlock != NULL) {
+                    MyObject *object = [[MyObject alloc] init];
+                    sampleObjectBlock(object);
+                }
             });
         }
     }
     
     //Call back one more time with the finished value
-    doubleResponseBlock(1.0);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (doubleResponseBlock != NULL) {
+            doubleResponseBlock(1.0);
+        }
+    });
+    
     
 }
 

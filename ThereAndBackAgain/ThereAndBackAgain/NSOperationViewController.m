@@ -8,9 +8,11 @@
 
 #import "NSOperationViewController.h"
 #import "IteratorOperation.h"
+#import "MyObject.h"
 
 @interface NSOperationViewController ()
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UILabel *StateLabel;
 
 @property NSOperationQueue *queue;
 @end
@@ -72,19 +74,30 @@
     IteratorOperation *operation = [[IteratorOperation alloc] init];
     
     //Queue up lots of tasks, each on a new background thread
-    [_queue addOperation:operation];
-    [_queue addOperation:[IteratorOperation new]]; //It's just shorthand for alloc init
+    //[_queue addOperation:operation];
+    //[_queue addOperation:[IteratorOperation new]]; //It's just shorthand for alloc init
+    
+    
+    NSString *finishedString = @"Finished!";
+    _StateLabel.text = @"Started Task...";
+    MyObject *myObj = [[MyObject alloc] init];
+    myObj.test = @"Changed!";
     
     //Add with update block
-    NSString *testString = @"test";
     IteratorOperation *operationWithCallback = [[IteratorOperation alloc] initWithUpdateBlock:^(double doubleValue) {
         _progressView.progress = doubleValue;
     }];
-    //Handle completion
+    
+    //Handle completion (still on a background thread!)
     [operationWithCallback setCompletionBlock:^{
-        NSLog(@"Finished!");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _StateLabel.text = myObj.test; //Will say changed as original reference is held
+        });
     }];
     [_queue addOperation:operationWithCallback];
+    
+    //Doesn't matter if the top level object gets changed. The original reference holds.
+    myObj = [[MyObject alloc] init];
 }
 
 @end

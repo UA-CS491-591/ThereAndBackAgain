@@ -24,6 +24,7 @@
 		1FBCE17E192245640065E3BB /* NSOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCE17C192245640065E3BB /* NSOperationViewController.m */; };
 		1FBCE17F192245640065E3BB /* NSOperationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBCE17D192245640065E3BB /* NSOperationViewController.xib */; };
 		86B03F95192265E1002029D3 /* IteratorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B03F94192265E1002029D3 /* IteratorOperation.m */; };
+		86B03F981922769A002029D3 /* MyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B03F971922769A002029D3 /* MyObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		1FBCE17D192245640065E3BB /* NSOperationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NSOperationViewController.xib; sourceTree = "<group>"; };
 		86B03F93192265E1002029D3 /* IteratorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IteratorOperation.h; sourceTree = "<group>"; };
 		86B03F94192265E1002029D3 /* IteratorOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IteratorOperation.m; sourceTree = "<group>"; };
+		86B03F961922769A002029D3 /* MyObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyObject.h; sourceTree = "<group>"; };
+		86B03F971922769A002029D3 /* MyObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +204,8 @@
 			children = (
 				86B03F93192265E1002029D3 /* IteratorOperation.h */,
 				86B03F94192265E1002029D3 /* IteratorOperation.m */,
+				86B03F961922769A002029D3 /* MyObject.h */,
+				86B03F971922769A002029D3 /* MyObject.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 			files = (
 				1FBCE155192245040065E3BB /* AppDelegate.m in Sources */,
 				1FBCE177192245430065E3BB /* GCDViewController.m in Sources */,
+				86B03F981922769A002029D3 /* MyObject.m in Sources */,
 				1FBCE151192245040065E3BB /* main.m in Sources */,
 				86B03F95192265E1002029D3 /* IteratorOperation.m in Sources */,
 				1FBCE17E192245640065E3BB /* NSOperationViewController.m in Sources */,
