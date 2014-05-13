@@ -32,6 +32,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    _queue = [[NSOperationQueue alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,9 +55,9 @@
 
 #pragma mark - Operations
 -(void)doShortOperation{
-    long totalIterations = 10000000;
+    long long totalIterations = 10000000;
     
-    for (int ii = 0; ii < totalIterations; ii++) {
+    for (long long ii = 0; ii < totalIterations; ii++) {
         if (ii %1000000 == 0) {
             double progress = (double)ii/(double)totalIterations;
             _progressView.progress = progress;
@@ -66,20 +68,23 @@
 }
 
 -(void)doLongOperation{
-    _queue = [[NSOperationQueue alloc] init];
+    //Create a basic operation
+    IteratorOperation *operation = [[IteratorOperation alloc] init];
     
-    //IteratorOperation *operation = [[IteratorOperation alloc] init];
+    //Queue up lots of tasks, each on a new background thread
+    [_queue addOperation:operation];
+    [_queue addOperation:[IteratorOperation new]]; //It's just shorthand for alloc init
     
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
-    [_queue addOperation:[IteratorOperation new]];
+    //Add with update block
+    NSString *testString = @"test";
+    IteratorOperation *operationWithCallback = [[IteratorOperation alloc] initWithUpdateBlock:^(double doubleValue) {
+        _progressView.progress = doubleValue;
+    }];
+    //Handle completion
+    [operationWithCallback setCompletionBlock:^{
+        NSLog(@"Finished!");
+    }];
+    [_queue addOperation:operationWithCallback];
 }
 
 @end

@@ -54,9 +54,9 @@
 
 #pragma mark - Operations
 -(void)doShortOperation{
-    long totalIterations = 10000000;
+    long long totalIterations = 10000000;
     
-    for (int ii = 0; ii < totalIterations; ii++) {
+    for (long long ii = 0; ii < totalIterations; ii++) {
         if (ii %1000000 == 0) {
             double progress = (double)ii/(double)totalIterations;
             _progressView.progress = progress;
@@ -67,16 +67,18 @@
 }
 
 -(void)doLongOperation{
+    //Do some things in the background using GCD
+    //This one gets you a thread of default priority
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        long long totalIterations = 10000000000;
+        long long totalIterations = 1000000000;
         
-        for (int ii = 0; ii < totalIterations; ii++) {
+        for (long long ii = 0; ii < totalIterations; ii++) {
             //Grab progress every 10% or so, and update UI
-            if (ii %1000000000 == 0) {
+            if (ii %100000000 == 0) {
                 double progress = (double)ii/(double)totalIterations;
                 
-                //Call back to main queue
+                //Call back to main queue (main thread)
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _progressView.progress = progress;
                 });

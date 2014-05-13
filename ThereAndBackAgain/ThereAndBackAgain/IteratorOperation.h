@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IteratorOperation : NSOperation
+//Create a response block to be used by an outside class
+typedef void(^DoubleResponseBlock)(double doubleValue);
 
+@interface IteratorOperation : NSOperation {
+    DoubleResponseBlock doubleResponseBlock;
+}
+
+-(instancetype)initWithUpdateBlock:(DoubleResponseBlock)completion;
 @end
