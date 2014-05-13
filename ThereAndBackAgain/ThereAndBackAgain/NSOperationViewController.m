@@ -7,10 +7,12 @@
 //
 
 #import "NSOperationViewController.h"
+#import "IteratorOperation.h"
 
 @interface NSOperationViewController ()
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
+@property NSOperationQueue *queue;
 @end
 
 @implementation NSOperationViewController
@@ -39,7 +41,7 @@
 }
 - (IBAction)didSelectStart:(id)sender {
     //Do short operation
-    [self doShortOperation];
+    //[self doShortOperation];
     
     //Do long operation
     [self doLongOperation];
@@ -64,16 +66,20 @@
 }
 
 -(void)doLongOperation{
-    long long totalIterations = 10000000000;
+    _queue = [[NSOperationQueue alloc] init];
     
-    for (int ii = 0; ii < totalIterations; ii++) {
-        if (ii %1000000000 == 0) {
-            double progress = (double)ii/(double)totalIterations;
-            _progressView.progress = progress;
-        }
-    }
+    //IteratorOperation *operation = [[IteratorOperation alloc] init];
     
-    _progressView.progress = 1;
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
+    [_queue addOperation:[IteratorOperation new]];
 }
 
 @end

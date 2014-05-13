@@ -23,6 +23,7 @@
 		1FBCE178192245430065E3BB /* GCDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBCE176192245430065E3BB /* GCDViewController.xib */; };
 		1FBCE17E192245640065E3BB /* NSOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBCE17C192245640065E3BB /* NSOperationViewController.m */; };
 		1FBCE17F192245640065E3BB /* NSOperationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBCE17D192245640065E3BB /* NSOperationViewController.xib */; };
+		86B03F95192265E1002029D3 /* IteratorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B03F94192265E1002029D3 /* IteratorOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		1FBCE17B192245640065E3BB /* NSOperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSOperationViewController.h; sourceTree = "<group>"; };
 		1FBCE17C192245640065E3BB /* NSOperationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSOperationViewController.m; sourceTree = "<group>"; };
 		1FBCE17D192245640065E3BB /* NSOperationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NSOperationViewController.xib; sourceTree = "<group>"; };
+		86B03F93192265E1002029D3 /* IteratorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IteratorOperation.h; sourceTree = "<group>"; };
+		86B03F94192265E1002029D3 /* IteratorOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IteratorOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,7 @@
 			children = (
 				1FBCE153192245040065E3BB /* AppDelegate.h */,
 				1FBCE154192245040065E3BB /* AppDelegate.m */,
+				86B03F92192265D2002029D3 /* Operations */,
 				1FBCE173192245140065E3BB /* Controllers */,
 				1FBCE156192245040065E3BB /* Images.xcassets */,
 				1FBCE14B192245040065E3BB /* Supporting Files */,
@@ -190,6 +194,15 @@
 			children = (
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		86B03F92192265D2002029D3 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				86B03F93192265E1002029D3 /* IteratorOperation.h */,
+				86B03F94192265E1002029D3 /* IteratorOperation.m */,
+			);
+			name = Operations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +305,7 @@
 				1FBCE155192245040065E3BB /* AppDelegate.m in Sources */,
 				1FBCE177192245430065E3BB /* GCDViewController.m in Sources */,
 				1FBCE151192245040065E3BB /* main.m in Sources */,
+				86B03F95192265E1002029D3 /* IteratorOperation.m in Sources */,
 				1FBCE17E192245640065E3BB /* NSOperationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +503,7 @@
 				1FBCE16F192245040065E3BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FBCE170192245040065E3BB /* Build configuration list for PBXNativeTarget "ThereAndBackAgainTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +512,7 @@
 				1FBCE172192245040065E3BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

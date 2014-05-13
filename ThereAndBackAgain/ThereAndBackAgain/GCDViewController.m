@@ -40,9 +40,9 @@
 
 - (IBAction)didSelectStartButton:(id)sender {
     //Do short operation
-    [self doShortOperation];
+    //[self doShortOperation];
     
-    //Do long operation
+    //Do long operation (with threads!)
     [self doLongOperation];
 }
 
@@ -67,16 +67,26 @@
 }
 
 -(void)doLongOperation{
-    long long totalIterations = 10000000000;
-    
-    for (int ii = 0; ii < totalIterations; ii++) {
-        if (ii %1000000000 == 0) {
-            double progress = (double)ii/(double)totalIterations;
-            _progressView.progress = progress;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        long long totalIterations = 10000000000;
+        
+        for (int ii = 0; ii < totalIterations; ii++) {
+            //Grab progress every 10% or so, and update UI
+            if (ii %1000000000 == 0) {
+                double progress = (double)ii/(double)totalIterations;
+                
+                //Call back to main queue
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    _progressView.progress = progress;
+                });
+            }
         }
-    }
+        
+        
+    });
     
-    _progressView.progress = 1;
+    
 }
 
 @end
