@@ -77,11 +77,9 @@
     //[_queue addOperation:operation];
     //[_queue addOperation:[IteratorOperation new]]; //It's just shorthand for alloc init
     
-    
-    NSString *finishedString = @"Finished!";
     _StateLabel.text = @"Started Task...";
     MyObject *myObj = [[MyObject alloc] init];
-    myObj.test = @"Changed!";
+    myObj.test = @"Finished!";
     
     //Add with update block
     IteratorOperation *operationWithCallback = [[IteratorOperation alloc] initWithUpdateBlock:^(double doubleValue) {
@@ -98,6 +96,7 @@
     
     //Doesn't matter if the top level object gets changed. The original reference holds.
     myObj = [[MyObject alloc] init];
+    //myObj.test = @"asdf87"; //Changes below the top level DO apply
 }
 
 @end
